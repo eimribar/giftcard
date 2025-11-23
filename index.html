@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Demo - Get $50 eGift Card | Agentss</title>
+    <meta name="description" content="Book a 30-minute product walkthrough with Agentss and receive a $50 eGift card. See how autonomous AI agents transform outbound sales.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #0B0F17;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .page-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: absolute;
+            inset: 0;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 68, 0, 0.1) 0%, transparent 50%);
+        }
+
+        /* Full Screen HUD Overlay */
+        .hud-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hud-overlay {
+                padding: 2rem;
+            }
+        }
+
+        /* Grid Texture */
+        .grid-texture {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Corner Accents */
+        .corner-accent {
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+            border-color: #FF4400;
+            box-shadow: 0 0 15px #FF4400;
+        }
+
+        .corner-tl { top: 1rem; left: 1rem; border-top: 2px solid; border-left: 2px solid; }
+        .corner-tr { top: 1rem; right: 1rem; border-top: 2px solid; border-right: 2px solid; }
+        .corner-bl { bottom: 1rem; left: 1rem; border-bottom: 2px solid; border-left: 2px solid; }
+        .corner-br { bottom: 1rem; right: 1rem; border-bottom: 2px solid; border-right: 2px solid; }
+
+        @media (min-width: 768px) {
+            .corner-tl { top: 2rem; left: 2rem; }
+            .corner-tr { top: 2rem; right: 2rem; }
+            .corner-bl { bottom: 2rem; left: 2rem; }
+            .corner-br { bottom: 2rem; right: 2rem; }
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 1rem;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            main {
+                padding: 8rem 1rem;
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 72rem;
+            width: 100%;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 1rem;
+            background: rgba(255, 68, 0, 0.1);
+            border: 1px solid rgba(255, 68, 0, 0.2);
+            border-radius: 9999px;
+            box-shadow: 0 0 15px rgba(255, 68, 0, 0.1);
+            backdrop-filter: blur(12px);
+            margin-bottom: 2rem;
+        }
+
+        .badge svg {
+            width: 12px;
+            height: 12px;
+            fill: none;
+            stroke: #FF4400;
+            stroke-width: 2;
+        }
+
+        .badge span {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #FF4400;
+        }
+
+        /* Headings */
+        .header-section {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            color: white;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+        }
+
+        .highlight {
+            color: #FF4400;
+            filter: drop-shadow(0 0 30px rgba(255, 68, 0, 0.4));
+        }
+
+        .subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: #9ca3af;
+            font-weight: 300;
+            max-width: 48rem;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+            width: 100%;
+            max-width: 64rem;
+        }
+
+        @media (min-width: 768px) {
+            .steps {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 4rem;
+            }
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .step-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid;
+            transition: all 0.3s;
+            backdrop-filter: blur(12px);
+        }
+
+        .step-icon.active {
+            background: rgba(255, 68, 0, 0.1);
+            border-color: #FF4400;
+            color: #FF4400;
+            box-shadow: 0 0 20px rgba(255, 68, 0, 0.2);
+        }
+
+        .step-icon:not(.active) {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #6b7280;
+        }
+
+        .step-icon:not(.active):hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #9ca3af;
+        }
+
+        .step-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-number {
+            font-size: 11px;
+            font-weight: 700;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #6b7280;
+        }
+
+        .step-icon.active + .step-text .step-label {
+            color: white;
+        }
+
+        .step-divider {
+            width: 6rem;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            display: none;
+        }
+
+        .step-divider::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        @media (min-width: 768px) {
+            .step-divider {
+                display: block;
+            }
+        }
+
+        /* Gift Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            width: 100%;
+            max-width: 80rem;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0;
+            }
+        }
+
+        /* Gift Card Option */
+        .card-option {
+            background: rgba(17, 21, 29, 0.8);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        .card-option:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(255, 68, 0, 0.15);
+            border-color: rgba(255, 68, 0, 0.5);
+        }
+
+        .card-option::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 68, 0, 0.05);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .card-option:hover::before {
+            opacity: 1;
+        }
+
+        .card-visual {
+            background: #0B0F17;
+            aspect-ratio: 1.8 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: background 0.3s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-option:hover .card-visual {
+            background: #0F131A;
+        }
+
+        .card-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .card-inner {
+            width: 70%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s;
+            position: relative;
+            z-index: 20;
+        }
+
+        .card-option:hover .card-inner {
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        /* Amazon Card */
+        .amazon-card {
+            width: 100%;
+            aspect-ratio: 1.58 / 1;
+            background: #232F3E;
+            border-radius: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .amazon-logo {
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+
+        .amazon-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .amazon-smile {
+            width: 40px;
+            height: 12px;
+            margin-top: 0.25rem;
+        }
+
+        .amazon-value {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .amazon-gloss {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        /* Hotels Card */
+        .hotels-card {
+            width: 100%;
+            aspect-ratio: 1.58 / 1;
+            background: #D32F2F;
+            border-radius: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hotels-title {
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hotels-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hotels-decoration {
+            position: absolute;
+            bottom: -2.5rem;
+            left: -2.5rem;
+            width: 8rem;
+            height: 8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            filter: blur(40px);
+        }
+
+        .hotels-value {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            z-index: 10;
+        }
+
+        .hotels-gloss {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top right, transparent, rgba(255, 255, 255, 0.1));
+            pointer-events: none;
+        }
+
+        /* Card Content */
+        .card-content {
+            padding: 0 2rem 2rem;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+
+        .card-option:hover .card-title {
+            color: #FF4400;
+        }
+
+        .card-button {
+            margin-top: auto;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: white;
+            color: black;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .card-button:hover {
+            background: #FF4400;
+            color: white;
+            box-shadow: 0 0 30px rgba(255, 68, 0, 0.4);
+        }
+
+        .card-button svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+
+        .card-button:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Footer Text */
+        .footer-text {
+            margin-top: 5rem;
+            font-size: 0.75rem;
+            color: #6b7280;
+            max-width: 36rem;
+            line-height: 1.5;
+            text-align: center;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.5s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Background Effect -->
+        <div class="video-background"></div>
+
+        <!-- Full Screen HUD Overlay -->
+        <div class="hud-overlay">
+            <!-- Grid Texture -->
+            <div class="grid-texture"></div>
+
+            <!-- Corner Accents -->
+            <div class="corner-accent corner-tl"></div>
+            <div class="corner-accent corner-tr"></div>
+            <div class="corner-accent corner-bl"></div>
+            <div class="corner-accent corner-br"></div>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <div class="content">
+                <!-- Header -->
+                <div class="header-section animate-in">
+                    <div class="badge">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                            <path d="M12 8v13"></path>
+                            <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                            <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path>
+                        </svg>
+                        <span>Limited Time Offer</span>
+                    </div>
+                    <h1>
+                        30-min Demo.<br>
+                        <span class="highlight">$50 Gift Card.</span>
+                    </h1>
+                    <p class="subtitle">
+                        See how autonomous agents can transform your outbound sales.<br class="hidden md:block">
+                        Book a session with our experts and receive your $50 card immediately.
+                    </p>
+                </div>
+
+                <!-- Steps -->
+                <div class="steps animate-in delay-1">
+                    <div class="step">
+                        <div class="step-icon active">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="8" width="18" height="4" rx="1"></rect>
+                                <path d="M12 8v13"></path>
+                                <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
+                                <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path>
+                            </svg>
+                        </div>
+                        <div class="step-text">
+                            <div class="step-number">Step 01</div>
+                            <div class="step-label">Choose your $50 eGift</div>
+                        </div>
+                    </div>
+                    <div class="step-divider"></div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="step-text">
+                            <div class="step-number">Step 02</div>
+                            <div class="step-label">Book time in Calendly</div>
+                        </div>
+                    </div>
+                    <div class="step-divider"></div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="step-text">
+                            <div class="step-number">Step 03</div>
+                            <div class="step-label">Receive eGift immediately</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gift Cards -->
+                <div class="cards-grid">
+                    <!-- Amazon Card -->
+                    <div class="card-option animate-in delay-2" onclick="window.open('https://calendly.com/jonathan-yess/1on1', '_blank')">
+                        <div class="card-visual">
+                            <div class="card-inner">
+                                <div class="amazon-card">
+                                    <div class="amazon-logo">
+                                        <div class="amazon-text">amazon.com</div>
+                                        <svg class="amazon-smile" viewBox="0 0 50 20">
+                                            <path d="M5,5 Q25,20 45,5" fill="none" stroke="#FF9900" stroke-width="3" stroke-linecap="round" />
+                                            <path d="M42,2 L45,5 L40,8" fill="#FF9900" stroke="none" />
+                                        </svg>
+                                    </div>
+                                    <div class="amazon-value">$50</div>
+                                    <div class="amazon-gloss"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">$50 Amazon.com Gift Card</h3>
+                            <button class="card-button">
+                                Select & Book Session
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Hotels.com Card -->
+                    <div class="card-option animate-in delay-3" onclick="window.open('https://calendly.com/jonathan-yess/1on1', '_blank')">
+                        <div class="card-visual">
+                            <div class="card-inner">
+                                <div class="hotels-card">
+                                    <div class="hotels-title">Hotels.com</div>
+                                    <div class="hotels-subtitle">Gift Card</div>
+                                    <div class="hotels-decoration"></div>
+                                    <div class="hotels-value">$50</div>
+                                    <div class="hotels-gloss"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">$50 Hotels.com Gift Card</h3>
+                            <button class="card-button">
+                                Select & Book Session
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="footer-text">
+                    *Must register with work email. Valid for qualified companies only. Limit one per company.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
